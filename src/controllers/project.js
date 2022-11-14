@@ -17,7 +17,7 @@ export const createProject = async (req, res) => {
 export const getProject = async (req, res) => {
   try {
     const data = await Project.find();
-    res.status(200).json({
+    return res.status(200).json({
       error: [],
       data,
     });
