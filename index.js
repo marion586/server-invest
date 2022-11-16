@@ -9,6 +9,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 dotenv.config();
+import subs from "./src/routes/sub/subs.js";
 //expreess function
 const app = express();
 
@@ -29,4 +30,5 @@ app.use(express.json({ limit: "50mb" }));
 app.use("/auth", auth);
 app.use("/categorie", categorie);
 app.use("/project", project);
+app.use("/subs", subs);
 app.listen("3002", () => console.log("Server Running at port : 3002"));
