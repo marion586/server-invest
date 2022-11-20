@@ -37,25 +37,29 @@ router.post("/session", async (req, res) => {
 
 router.post("/session-details", async (req, res) => {
   const user = await User.findOne({ email: req.body.user });
-  const session = await stripe.checkout.sessions.create(
-    {
-      mode: "subscription",
-      payment_method_types: ["card"],
-      line_items: [
-        {
-          price: req.body.priceId,
-          quantity: 1,
-        },
-      ],
-      success_url: "http://localhost:3000/details-success",
-      cancel_url: "http://localhost:3000/",
-      customer: user?.customerStripeId,
-    },
-    {
-      apiKey: process.env.STRIPE_SECRET_KEY,
-    }
-  );
-  res.json(session);
+  try {
+    const session = await stripe.checkout.sessions.create(
+      {
+        mode: "subscription",
+        payment_method_types: ["card"],
+        line_items: [
+          {
+            price: req.body.priceId,
+            quantity: 1,
+          },
+        ],
+        success_url: "http://localhost:3000/details-success",
+        cancel_url: "http://localhost:3000/",
+        customer: user?.customerStripeId,
+      },
+      {
+        apiKey: process.env.STRIPE_SECRET_KEY,
+      }
+    );
+    res.json(session);
+  } catch (error) {
+    throw error.message;
+  }
 });
 
 export default router;
