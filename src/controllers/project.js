@@ -1,10 +1,11 @@
 import Project from "../models/project.js";
 
 export const createProject = async (req, res) => {
-  const product = new Project(req.body);
+  const project = new Project(req.body);
 
   try {
-    const createdProject = await product.save();
+    const createdProject = await project.save();
+    console.log(createdProject);
     res.status(201).json({
       error: [],
       data: createdProject,

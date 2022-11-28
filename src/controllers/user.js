@@ -5,7 +5,16 @@ import JWT from "jsonwebtoken";
 import { stripe } from "../Utils/stripe.js";
 import { validationResult } from "express-validator";
 export const signUp = async (req, res) => {
-  const { firstName, lastName, email, password, image, typeUser } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    image,
+    typeUser,
+    tel,
+    address,
+  } = req.body;
   const validationError = validationResult(req);
   if (!validationError.isEmpty()) {
     const errors = validationError.array().map((error) => {
@@ -46,6 +55,8 @@ export const signUp = async (req, res) => {
     email,
     password: hashedPassword,
     customerStripeId: customer.id,
+    tel,
+    address,
   });
 
   console.log(process.env.JWT_SECRET);
@@ -67,6 +78,8 @@ export const signUp = async (req, res) => {
         email: newUser.email,
         typeUser: newUser.typeUser,
         image: newUser.image,
+        tel: newUser.tel,
+        address: newUser.address,
         stripeCustomerId: customer.id,
       },
     },

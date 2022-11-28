@@ -27,6 +27,14 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    address: {
+      type: String,
+      trim: true,
+    },
+    tel: {
+      type: String,
+      trim: true,
+    },
     image: {
       type: String,
       trim: true,

@@ -5,6 +5,7 @@ import auth from "./src/routes/autRoutes/index.js";
 import categorie from "./src/routes/categorie/categorie.js";
 import project from "./src/routes/project/project.js";
 import detail from "./src/routes/detail/detail.js";
+import invest from "./src/routes/invest/invest.js";
 import cors from "cors";
 
 import dotenv from "dotenv";
@@ -33,4 +34,5 @@ app.use("/categorie", categorie);
 app.use("/project", project);
 app.use("/subs", subs);
 app.use("/detail", detail);
+app.use("/invest", invest);
 app.listen("3002", () => console.log("Server Running at port : 3002"));
