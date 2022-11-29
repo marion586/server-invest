@@ -31,6 +31,7 @@ export const createCategorie = async (req, res) => {
 export const getCategorie = async (req, res) => {
   try {
     const data = await Categorie.find();
+    console.log(data);
 
     if (data) {
       return res.json({

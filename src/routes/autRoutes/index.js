@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 import express from "express";
-import { signUp, login } from "../../controllers/user.js";
+import { signUp, login, getUser, deleteUser } from "../../controllers/user.js";
 
 const router = express.Router();
 
@@ -11,4 +11,6 @@ router.post(
   signUp
 );
 router.post("/connection", login);
+router.get("/user", getUser);
+router.delete("user/:id", deleteUser);
 export default router;

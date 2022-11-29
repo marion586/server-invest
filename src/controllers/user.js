@@ -121,3 +121,26 @@ export const login = async (req, res) => {
     },
   });
 };
+export const getUser = async (req, res) => {
+  try {
+    const data = await User.find();
+    return res.status(200).json({
+      error: [],
+      data,
+    });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    const data = await User.findById(req.params.id);
+    if (!data) return res.status(404).json({ message: "donné n'est existe" });
+
+    const deletedUser = await User.deleteOne({ _id: req.params.id });
+    return res.status(201).json(deletedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
