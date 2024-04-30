@@ -16,8 +16,9 @@ import subs from "./src/routes/sub/subs.js";
 const app = express();
 
 //connect to mongoDB database
-
-mongoose.connect("mongodb://localhost:27017/invest", {
+remote_uri = "mongodb+srv://marion:rnd24*@cluster0.31oxslj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+local_uri = "mongodb://localhost:27017/invest"
+mongoose.connect(remote_uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
